@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test xmlns="http://xmlmath.org/1.0">
+	
+	<testBoolean result="true">
+		<expression>
+			<equals>
+				<include>src/test/resources/Includes.xml</include>
+				<inline name="foo"/>
+				<string value="foo"/>
+			</equals>
+		</expression>
+	</testBoolean>
+</test>

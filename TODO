@@ -1,0 +1,15 @@
+This file contains the list of features that should be incorporated into a
+future release. The items are not listed in order of importance.
+
+- Multithreading support.
+- Make <string> of type xs:string and remove value-attribute.
+- Add meta keywords to site html (investigate apache forrest).
+- Make null-support configurable: <list null="true|false">.
+- Make sure toDouble and toLong also support string.
+- Make sure NaN != NaN in double comparisons.
+- Install cruise-control for automatic nightly builds.
+- Create date/time library.
+- Create matrix library.
+- Add timeslice accounting and enforcement.
+- Add regular expression support.
+- Add support for maps.

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Example to illustrate logical operations in xmlmath. This expression evaluates
+to true because all four arguments to <and> evaluate to true.
+-->
+
+<expression xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlmath.org/1.0 http://xmlmath.org/1.0">
+	
+	<and>
+		<true/>
+		
+		<not>
+			<equals>
+				<false/>
+				<true/>
+			</equals>
+		</not>
+		
+		<xor>
+			<false/>
+			<true/>
+		</xor>
+		
+		<lessThan>
+			<double value="1000.0"/>
+			<infinity/>
+		</lessThan>
+	</and>
+</expression>

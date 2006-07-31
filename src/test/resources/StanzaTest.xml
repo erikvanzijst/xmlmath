@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test xmlns="http://xmlmath.org/1.0">
+	
+	<testBoolean result="true">
+
+		<expression>
+			<equals>
+				<stanza name="pow">
+					<product datatype="long">
+						<linkLong name="x"/>
+						<linkLong name="x"/>
+					</product>
+				</stanza>
+				<declare name="x">
+					<long value="5"/>
+				</declare>
+		
+				<inlineNumber name="pow"/>
+				<inlineLong name="pow"/>
+			</equals>
+		</expression>
+	</testBoolean>
+</test>

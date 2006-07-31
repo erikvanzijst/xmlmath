@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test xmlns="http://xmlmath.org/1.0">
+	<testBoolean result="true">
+		<expression>
+			<and>
+				<equals>
+					<for iterator="i">
+						<start>
+							<long value="0"/>
+						</start>
+						<end>
+							<long value="10"/>
+						</end>
+						<do>
+							<linkLong name="i"/>
+						</do>
+					</for>
+					<for iterator="i">
+						<long value="0"/>
+						<long value="10"/>
+						<linkLong name="i"/>
+					</for>
+				</equals>
+				
+				<equals>
+					<sum iterator="i" datatype="long">
+						<start>
+							<long value="0"/>
+						</start>
+						<end>
+							<long value="9"/>
+						</end>
+						<do>
+							<long value="1"/>
+						</do>
+					</sum>
+					<long value="10"/>
+				</equals>
+				
+				<equals>
+					<sum iterator="i" datatype="long">
+						<long value="0"/>
+						<long value="9"/>
+						<long value="1"/>
+					</sum>
+					<long value="10"/>
+				</equals>
+			</and>
+		</expression>
+	</testBoolean>
+</test>

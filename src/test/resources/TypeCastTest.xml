@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This tests verifies the proper behaviour of the typecasting operators.
+-->
+<test xmlns="http://xmlmath.org/1.0">
+	
+	<testBoolean result="true">
+		<expression>
+			<and>
+				<equals>
+					<castLong>
+						<long value="2"/>
+					</castLong>
+					<long value="2"/>
+				</equals>
+				
+				<equals>
+					<castDouble>
+						<double value="2"/>
+					</castDouble>
+					<double value="2"/>
+				</equals>
+				
+				<equals>
+					<castString>
+						<string value="foo"/>
+					</castString>
+					<string value="foo"/>
+				</equals>
+				
+				<equals>
+					<castBoolean>
+						<true/>
+					</castBoolean>
+					<true/>
+				</equals>
+				
+				<equals>
+					<castList>
+						<list>
+							<long value="2"/>
+						</list>
+					</castList>
+					<list>
+						<long value="2"/>
+					</list>
+				</equals>
+			</and>
+		</expression>
+	</testBoolean>
+</test>

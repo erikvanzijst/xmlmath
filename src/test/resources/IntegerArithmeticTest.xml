@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+	<testLong result="24">
+		<expression>
+			<toLong>
+				<product datatype="long">
+					<long value="2"/>
+					<long value="12"/>
+				</product>
+			</toLong>
+		</expression>
+	</testLong>
+</test>

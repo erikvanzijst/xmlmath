@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This example demonstrates conditional execution using the <choose> operator.
+Note that in contrast to imperative programming languages, xmlmath always
+requires an "else"-expression.
+-->
+
+<expression xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlmath.org/1.0 http://xmlmath.org/1.0">
+	
+	<strcat>
+		<string value="The condition is "/>
+		<castString>
+			<choose>
+				<if>
+					<false/>
+				</if>
+				<then>
+					<string value=""/>
+				</then>
+				<else>
+					<string value="not"/>
+				</else>
+			</choose>
+		</castString>
+		<string value=" true."/>
+	</strcat>
+</expression>

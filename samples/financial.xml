@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file contains some financial math.
+-->
+<includes xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlmath.org/1.0 http://xmlmath.org/1.0">
+	
+	<include>stats.xml</include>
+	
+	<!--
+	The price c of a European call and the price p of a European put on a
+	stock providing a dividend yield at rate q are calculated as follows.
+	
+		This stanza requires:
+	standard-deviation:	double s
+	price-underlying:	double S0
+	strike-price:		double K
+	interest-rate:		double r
+	dividend-yield:		double q
+	years-to-maturity:	double T
+	-->
+	<stanza name="bsm">
+		<!-- use boolean "call" for call-price -->
+		<declare name="d1">
+			<quotient datatype="double">
+				<add>
+					<log>
+						<castDouble>
+							<quotient datatype="double">
+								<linkDouble name="S0"/>
+								<linkDouble name="K"/>
+							</quotient>
+						</castDouble>
+					</log>
+					<product>
+						<subtract>
+							<linkDouble name="r"/>
+							<add>
+								<linkDouble name="q"/>
+								<quotient>
+									<pow>
+										<linkDouble name="s"/>
+										<double value="2"/>
+									</pow>
+									<double value="2"/>
+								</quotient>
+							</add>
+						</subtract>
+						<linkDouble name="T"/>
+					</product>
+				</add>
+				
+				<product>
+					<linkDouble name="s"/>
+					<sqrt>
+						<linkDouble name="T"/>
+					</sqrt>
+				</product>
+			</quotient>
+		</declare>
+		<declare name="d2">
+			<subtract datatype="double">
+				<linkDouble name="d1"/>
+				<product>
+					<linkDouble name="s"/>
+					<sqrt>
+						<linkDouble name="T"/>
+					</sqrt>
+				</product>
+			</subtract>
+		</declare>
+		
+		<declare name="S0exp">
+			<product>
+				<linkDouble name="S0"/>
+				<pow>
+					<e/>
+					<castDouble>
+						<product datatype="double">
+							<double value="-1"/>
+							<linkDouble name="q"/>
+							<linkDouble name="T"/>
+						</product>
+					</castDouble>
+				</pow>
+			</product>
+		</declare>
+		<declare name="Kexp">
+			<product>
+				<linkDouble name="K"/>
+				<pow>
+					<e/>
+					<castDouble>
+						<product datatype="double">
+							<double value="-1"/>
+							<linkDouble name="r"/>
+							<linkDouble name="T"/>
+						</product>
+					</castDouble>
+				</pow>
+			</product>
+		</declare>
+		
+		<choose>
+			<if>
+				<linkBoolean name="call"/>
+			</if>
+			<then>
+				<subtract>
+					<product>
+						<declare name="x">
+							<linkDouble name="d1"/>
+						</declare>
+						<linkDouble name="S0exp"/>
+						<inlineDouble name="cdf"/>
+					</product>
+					<product>
+						<declare name="x">
+							<linkDouble name="d2"/>
+						</declare>
+						<linkDouble name="Kexp"/>
+						<inlineDouble name="cdf"/>
+					</product>
+				</subtract>
+			</then>
+			<else>
+				<subtract>
+					<product>
+						<declare name="x">
+							<product>
+								<double value="-1"/>
+								<linkDouble name="d2"/>
+							</product>
+						</declare>
+						<linkDouble name="Kexp"/>
+						<inlineDouble name="cdf"/>
+					</product>
+					<product>
+						<declare name="x">
+							<product>
+								<double value="-1"/>
+								<linkDouble name="d1"/>
+							</product>
+						</declare>
+						<linkDouble name="S0exp"/>
+						<inlineDouble name="cdf"/>
+					</product>
+				</subtract>
+			</else>
+		</choose>
+	</stanza>
+	
+	<stanza name="bsm_put">
+		<declare name="call">
+			<false/>
+		</declare>
+		<inline name="bsm"/>
+	</stanza>
+	<stanza name="bsm_call">
+		<declare name="call">
+			<true/>
+		</declare>
+		<inline name="bsm"/>
+	</stanza>
+</includes>

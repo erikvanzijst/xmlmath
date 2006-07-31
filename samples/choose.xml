@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This example demonstrates how the optional tags in <choose> can be used to
+increase readability and clearity, or can be omitted for compactness. This
+also applies to operators <sum> and <for>.
+
+The two choose statements below are identical.
+-->
+
+<expression xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlmath.org/1.0 http://xmlmath.org/1.0">
+	
+	<equals>
+
+		<choose>
+			<if>
+				<true/>
+			</if>
+			<then>
+				<string value="foo"/>
+			</then>
+			<else>
+				<string value="bar"/>
+			</else>
+		</choose>
+
+		<choose>
+			<true/>
+			<string value="foo"/>
+			<string value="bar"/>
+		</choose>
+
+	</equals>
+</expression>

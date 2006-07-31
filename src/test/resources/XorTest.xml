@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test xmlns="http://xmlmath.org/1.0">
+	
+	<testBoolean result="true">
+		<expression>
+			<and>
+				<xor>
+					<true/>
+					<false/>
+				</xor>
+				<xor>
+					<false/>
+					<true/>
+				</xor>
+				<not>
+					<xor>
+						<true/>
+						<true/>
+					</xor>
+				</not>
+				<not>
+					<xor>
+						<false/>
+						<false/>
+					</xor>
+				</not>
+			</and>
+		</expression>
+	</testBoolean>
+</test>

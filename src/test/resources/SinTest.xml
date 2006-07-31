@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file tests some of xmlmath's trigonometry operators.
+-->
+<test xmlns="http://xmlmath.org/1.0">
+	
+	<testBoolean result="true">
+		<expression>
+			<and>
+				<equals>
+					<toLong>
+						<sin>
+							<double value="0.0"/>
+						</sin>
+					</toLong>
+					<long value="0"/>
+				</equals>
+	
+				<lessThan>
+					<subtract>
+						<sin>
+							<toDouble>
+								<product>
+									<pi/>
+									<double value="2.0"/>
+								</product>
+							</toDouble>
+						</sin>
+						<double value="0.0"/>
+					</subtract>
+					<double value=".0000000001"/>
+				</lessThan>		
+			</and>
+		</expression>
+	</testBoolean>
+</test>

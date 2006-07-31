@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test xmlns="http://xmlmath.org/1.0">
+	
+	<testLong result="25">
+		<expression>
+			<toLong>
+				<add datatype="long">
+					<long value="10"/>
+					<long value="5"/>
+					<long value="10"/>
+				</add>
+			</toLong>
+		</expression>
+	</testLong>
+</test>

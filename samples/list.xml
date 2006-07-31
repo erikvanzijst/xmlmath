@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This example shows how the <list> operator is used to create a list of
+elements. Lists maintain their original order, have no hard boundary on size,
+can be empty and can contain elements of different types.
+
+The list is defined as a declaration and the second half of the example shows
+how to iterate through a list and process the individual elements. When run,
+the following result is printed:
+
+	The list contains the following items:
+	item[0]: 1
+	item[1]: foo
+	item[2]: 2.55
+	item[3]: true
+	item[4]: 3.141592653589793
+	item[5]: 2.718281828459045
+	item[6]: Infinity
+	
+Note that it is also possible to print a list directly by passing it to
+<toString>, which would print the list in the default style:
+[1, foo, 2.55, true, 3.141592653589793, 2.718281828459045, Infinity]
+-->
+
+<expression xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlmath.org/1.0 http://xmlmath.org/1.0">
+	
+	<declare name="list">
+		<list>
+			<long value="1"/>
+			<string value="foo"/>
+			<double value="2.55"/>
+			<true/>
+			<pi/>
+			<e/>
+			<infinity/>
+		</list>
+	</declare>
+
+	<strcat>
+		<string value="The list contains the following items:"/>
+		<strcat>
+			<for iterator="i">
+				<long value="0"/>
+				<listSize>
+					<linkList name="list"/>
+				</listSize>
+				<strcat>
+					<string value="&#xA;item["/>
+					<toString>
+						<linkLong name="i"/>
+					</toString>
+					<string value="]: "/>
+					<toString>
+						<listItem>
+							<linkList name="list"/>
+							<linkLong name="i"/>
+						</listItem>
+					</toString>
+				</strcat>
+			</for>
+		</strcat>
+	</strcat>
+</expression>

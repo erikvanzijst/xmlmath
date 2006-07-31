@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This example computes the mean value of 10 uniformly distributed random
+numbers between 0.0 and 1.0.
+
+N.B.
+In this example it is important to declare the list as "const", or new random
+numbers will be generated each time the list is linked to, leading to
+inconsistencies between the list that is printed and the calculated mean
+value.
+-->
+
+<expression xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlmath.org/1.0 http://xmlmath.org/1.0">
+	
+	<stanza name="mean">
+		<quotient>
+			<listSum>
+				<linkList name="x"/>
+			</listSum>
+			<listSize>
+				<linkList name="x"/>
+			</listSize>
+		</quotient>
+	</stanza>
+	<declare name="x" const="true">
+		<list>
+			<rnd/>
+			<rnd/>
+			<rnd/>
+			<rnd/>
+			<rnd/>
+			<rnd/>
+			<rnd/>
+			<rnd/>
+			<rnd/>
+			<rnd/>
+		</list>
+	</declare>
+	<strcat>
+		<toString>
+			<link name="x"/>
+		</toString>
+		<string value="&#xA;The mean value of the above random numbers is: "/>
+		<toString>
+			<inline name="mean"/>
+		</toString>
+	</strcat>
+</expression>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file tests if EvaluationExceptions are properly raised during
+expression evaluation.
+-->
+<test xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+	<testException>
+		<expression>
+			<quotient datatype="long">
+				<long value="1"/>
+				<long value="0"/>
+			</quotient>
+		</expression>
+	</testException>
+</test>

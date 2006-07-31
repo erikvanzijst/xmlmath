@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This test verifies the correct behaviour of constant declarations. To this end
+it has three declarations that contain a random number. Two are constant, the
+other is not. Given the seed, we know that the first 2 numbers from the
+pseudorandom stream are not equal. Hence, declaration "x" will be equal to
+itself, while "z" will not (because it is evaluated twice).
+-->
+
+<test xmlns="http://xmlmath.org/1.0">
+	<testBoolean result="true">
+		<expression>
+			<and>
+				<declare name="x" const="eval">
+					<rnd seed="1"/>
+				</declare>
+				<declare name="y" const="expr">
+					<rnd seed="1"/>
+				</declare>
+				<declare name="z">
+					<rnd seed="1"/>
+				</declare>
+				<equals>
+					<link name="x"/>
+					<link name="x"/>
+				</equals>
+				<equals>
+					<link name="y"/>
+					<link name="y"/>
+				</equals>
+				<not>
+					<equals>
+						<link name="z"/>
+						<link name="z"/>
+					</equals>
+				</not>
+			</and>
+		</expression>
+	</testBoolean>
+</test>

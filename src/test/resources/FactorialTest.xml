@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+	<testBoolean result="true">
+		<expression>
+			<and>
+				<equals>
+					<fact>
+						<long value="3"/>
+					</fact>
+					<long value="6"/>
+				</equals>
+				<equals>
+					<fact>
+						<long value="0"/>
+					</fact>
+					<long value="1"/>
+				</equals>
+				<equals>
+					<fact>
+						<long value="1"/>
+					</fact>
+					<long value="1"/>
+				</equals>
+				<equals>
+					<fact>
+						<long value="10"/>
+					</fact>
+					<long value="3628800"/>
+				</equals>
+			</and>
+		</expression>
+	</testBoolean>
+</test>

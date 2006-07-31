@@ -1,0 +1,48 @@
+This file contains the release history for xmlmath.
+
+
+- Added declaration persistency levels: const="none|eval|expr".
+
+
+version: xmlmath-1.1-SNAPSHOT-4
+date: 31.jul.2006
+released-by: Erik van Zijst
+
+- Removed fixed include/stanza/declare order (use in any order now).
+- Switched to LGPL (Lesser/Library General Public Library).
+- Added <fail> to raise an EvaluationException.
+- Added <castNumber>.
+- Added <linkNumber> and <inlineNumber>.
+
+
+version: xmlmath-1.1-SNAPSHOT-3
+date: 12.jun.2006
+released-by: Erik van Zijst
+
+- Xmlmath can now be used as a library.
+- Passing arguments to expressions.
+- Made if/then/else elements optional in <choose>. Same for <for> and <sum>.
+- Nested include URLs are now relative to each other.
+- Added conditional evaluation with if/then/else.
+- Switched stanza/delcare order (declarations may require stanzas).
+- Allow include, stanzas and declarations directly in <stanza> and <declare>.
+- Added <listItem><long/></listItem>.
+- Explicit casting added through <castLong>, <castString>, etc.
+- <linkBoolean>, <inlineBoolean>, <listSum> and <rnd> added.
+- Declarations can now be const (evaluated only once).
+
+
+version: xmlmath-1.1-SNAPSHOT-2
+date: 29.may.2006
+released-by: Erik van Zijst
+
+- <product> now takes 2 or more numbers.
+- <include> added to support xml-based libraries.
+- Documentation extended.
+
+
+version: xmlmath-1.1-SNAPSHOT-1
+date: 25.may.2006
+released-by: Erik van Zijst
+
+- First public release; project moved to sourceforge.

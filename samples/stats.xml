@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Contains some statistical stanzas.
+-->
+
+<includes xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlmath.org/1.0 http://xmlmath.org/1.0">
+
+<!--
+Computes the Cumulative Distribution Function. This algorithm was taken from:
+http://www1.fpl.fs.fed.us/distributions.html
+When this stanza is inlined, a double named "x" must be declared.
+
+It is based upon algorithm 5666 for the error function, from:
+
+	Hart, J.F. et al, 'Computer Approximations', Wiley 1968
+	
+The FORTRAN programmer was Alan Miller. The documentation in the FORTRAN code
+claims that the function is "accurate to 1.e-15."
+
+-->
+	<stanza name="cdf">
+		<declare name="p0">
+			<double value="220.2068679123761"/>
+		</declare>
+		<declare name="p1">
+			<double value="221.2135961699311"/>
+		</declare>
+		<declare name="p2">
+			<double value="112.0792914978709"/>
+		</declare>
+		<declare name="p3">
+			<double value="33.91286607838300"/>
+		</declare>
+		<declare name="p4">
+			<double value="6.373962203531650"/>
+		</declare>
+		<declare name="p5">
+			<double value=".7003830644436881"/>
+		</declare>
+		<declare name="p6">
+			<double value=".3526249659989109E-01"/>
+		</declare>
+
+		<declare name="q0">
+			<double value="440.4137358247522"/>
+		</declare>
+		<declare name="q1">
+			<double value="793.8265125199484"/>
+		</declare>
+		<declare name="q2">
+			<double value="637.3336333788311"/>
+		</declare>
+		<declare name="q3">
+			<double value="296.5642487796737"/>
+		</declare>
+		<declare name="q4">
+			<double value="86.78073220294608"/>
+		</declare>
+		<declare name="q5">
+			<double value="16.06417757920695"/>
+		</declare>
+		<declare name="q6">
+			<double value="1.755667163182642"/>
+		</declare>
+		<declare name="q7">
+			<double value=".8838834764831844E-1"/>
+		</declare>
+
+		<declare name="cutoff">
+			<double value="7.071"/>
+		</declare>
+		<declare name="root2pi" const="true">
+			<sqrt>
+				<castDouble>
+					<product datatype="double">
+						<double value="2"/>
+						<pi/>
+					</product>
+				</castDouble>
+			</sqrt>
+		</declare>
+		
+		<declare name="xabs">
+			<abs>
+				<linkDouble name="x"/>
+			</abs>
+		</declare>
+		
+		<declare name="expntl">
+			<pow>
+				<e/>
+				<castDouble>
+					<product datatype="double">
+						<double value="-.5"/>
+						<linkDouble name="xabs"/>
+						<linkDouble name="xabs"/>
+					</product>
+				</castDouble>
+			</pow>
+		</declare>
+		<declare name="pdf">
+			<quotient>
+				<linkDouble name="expntl"/>
+				<linkDouble name="root2pi"/>
+			</quotient>
+		</declare>
+		<declare name="p">
+			<choose>
+				<if>
+					<lessThan>
+						<linkDouble name="xabs"/>
+						<linkDouble name="cutoff"/>
+					</lessThan>
+				</if>
+				<then>
+				
+					<product>
+						<linkDouble name="expntl"/>
+						<quotient>
+							<add>
+								<linkDouble name="p0"/>
+								<product>
+									<linkDouble name="xabs"/>
+									<add>
+										<linkDouble name="p1"/>
+										<product>
+											<linkDouble name="xabs"/>
+											<add>
+												<linkDouble name="p2"/>
+												<product>
+													<linkDouble name="xabs"/>
+													<add>
+														<linkDouble name="p3"/>
+														<product>
+															<linkDouble name="xabs"/>
+															<add>
+																<linkDouble name="p4"/>
+																<product>
+																	<linkDouble name="xabs"/>
+																	<add>
+																		<linkDouble name="p5"/>
+																		<product>
+																			<linkDouble name="xabs"/>
+																			<linkDouble name="p6"/>
+																		</product>
+																	</add>
+																</product>
+															</add>
+														</product>
+													</add>
+												</product>
+											</add>
+										</product>
+									</add>
+								</product>
+							</add>
+							
+							<add>
+								<linkDouble name="q0"/>
+								<product>
+									<linkDouble name="xabs"/>
+									<add>
+										<linkDouble name="q1"/>
+										<product>
+											<linkDouble name="xabs"/>
+											<add>
+												<linkDouble name="q2"/>
+												<product>
+													<linkDouble name="xabs"/>
+													<add>
+														<linkDouble name="q3"/>
+														<product>
+															<linkDouble name="xabs"/>
+															<add>
+																<linkDouble name="q4"/>
+																<product>
+																	<linkDouble name="xabs"/>
+																	<add>
+																		<linkDouble name="q5"/>
+																		<product>
+																			<linkDouble name="xabs"/>
+																			<add>
+																				<linkDouble name="q6"/>
+																				<product>
+																					<linkDouble name="xabs"/>
+																					<linkDouble name="q7"/>
+																				</product>
+																			</add>
+																		</product>
+																	</add>
+																</product>
+															</add>
+														</product>
+													</add>
+												</product>
+											</add>
+										</product>
+									</add>
+								</product>
+							</add>
+						</quotient>
+					</product>
+					
+				</then>
+				<else>
+					<quotient>
+						<linkDouble name="pdf"/>
+						<add>
+							<linkDouble name="xabs"/>
+							<quotient>
+								<double value="1.0"/>
+								<add>
+									<linkDouble name="xabs"/>
+									<quotient>
+										<double value="2.0"/>
+										<add>
+											<linkDouble name="xabs"/>
+											<quotient>
+												<double value="3.0"/>
+												<add>
+													<linkDouble name="xabs"/>
+													<quotient>
+														<double value="4.0"/>
+														<add>
+															<linkDouble name="xabs"/>
+															<double value="0.65"/>
+														</add>
+													</quotient>
+												</add>
+											</quotient>
+										</add>
+									</quotient>
+								</add>
+							</quotient>
+						</add>
+					</quotient>
+				
+				</else>
+			</choose>
+		</declare>
+
+		<choose>
+			<if>
+				<greaterThan>
+					<linkDouble name="x"/>
+					<double value="37.0"/>
+				</greaterThan>
+			</if>
+			<then>
+				<double value="1.0"/>
+			</then>
+			<else>
+				<choose>
+					
+					<if>
+						<lessThan>
+							<linkDouble name="x"/>
+							<double value="-37"/>
+						</lessThan>
+					</if>
+					<then>
+						<double value="0.0"/>
+					</then>
+					<else>
+						<choose>
+							<if>
+								<lessThan>
+									<linkDouble name="x"/>
+									<double value="0.0"/>
+								</lessThan>
+							</if>
+							<then>
+								<linkDouble name="p"/>
+							</then>
+							<else>
+								<subtract>
+									<double value="1.0"/>
+									<linkDouble name="p"/>
+								</subtract>
+							</else>
+						</choose>
+					</else>
+				</choose>
+			</else>
+		</choose>
+	</stanza>
+</includes>

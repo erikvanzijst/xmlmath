@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test xmlns="http://xmlmath.org/1.0">
+
+	<testBoolean result="true">
+		<expression>
+			<and>
+				<equals>
+					<abs>
+						<log>
+							<double value="0"/>
+						</log>
+					</abs>
+					<infinity/>
+				</equals>
+				<equals>
+					<log>
+						<double value="1"/>
+					</log>
+					<double value="0"/>
+				</equals>
+			</and>
+		</expression>
+	</testBoolean>
+</test>

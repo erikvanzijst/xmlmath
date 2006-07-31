@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This example contains the quadratic formula to solve quadratic equations
+(ax^2 + bx + c).
+The quadratic formula is defined in a stanza which returns a list that
+contains the solutions to any quadratic equation. There may be zero, one, or
+two solutions.
+Note that imaginary solutions are not found.
+-->
+
+<expression xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlmath.org/1.0 http://xmlmath.org/1.0">
+	
+	<stanza name="quadratic_equation">
+		<add>
+			<product>
+				<linkDouble name="a"/>
+				<pow>
+					<linkDouble name="x"/>
+					<double value="2"/>
+				</pow>
+			</product>
+			<product>
+				<linkDouble name="b"/>
+				<linkDouble name="x"/>
+			</product>
+			<linkDouble name="c"/>
+		</add>
+	</stanza>
+	
+	<stanza name="quadratic_formula">
+		<stanza name="solve"><!-- finds one solution (+/-) -->
+			<castDouble>
+				<choose>
+					<if>
+						<greaterThan>
+							<linkDouble name="discriminant"/>
+							<double value="0.0"/>
+						</greaterThan>
+					</if>
+					<then>
+						<quotient>
+							<add>
+								<product>
+									<double value="-1.0"/>
+									<linkDouble name="b"/>
+								</product>
+								<product>
+									<sqrt>
+										<linkDouble name="discriminant"/>
+									</sqrt>
+									<castDouble>
+										<choose>
+											<if>
+												<linkBoolean name="plus"/>
+											</if>
+											<then>
+												<double value="1"/>
+											</then>
+											<else>
+												<double value="-1"/>
+											</else>
+										</choose>
+									</castDouble>
+								</product>
+							</add>
+							<product>
+								<double value="2"/>
+								<linkDouble name="a"/>
+							</product>
+						</quotient>
+					</then>
+					<else>
+						<nil/>
+					</else>
+				</choose>
+			</castDouble>
+		</stanza>
+		<declare name="discriminant"><!-- solves (b^2 - 4ac) -->
+			<subtract>
+				<pow>
+					<linkDouble name="b"/>
+					<double value="2"/>
+				</pow>
+				<product>
+					<double value="4"/>
+					<linkDouble name="a"/>
+					<linkDouble name="c"/>
+				</product>
+			</subtract>
+		</declare>
+		<list>
+			<castDouble>
+				<declare name="plus">
+					<true/>
+				</declare>
+				<inlineDouble name="solve"/>
+			</castDouble>
+			<castDouble>
+				<declare name="plus">
+					<false/>
+				</declare>
+				<inlineDouble name="solve"/>
+			</castDouble>
+		</list>
+	</stanza>
+	<declare name="a">
+		<double value="1"/>
+	</declare>
+	<declare name="b">
+		<double value="3"/>
+	</declare>
+	<declare name="c">
+		<double value="1"/>
+	</declare>
+	
+	<inline name="quadratic_formula"/>
+</expression>

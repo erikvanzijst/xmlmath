@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Simple includes file used in tests. It contains some constants and a stanza.
+-->
+
+<includes xmlns="http://xmlmath.org/1.0">
+	<declare name="avogadro">
+		<double value="6.0221415E23"/>
+	</declare>
+	<stanza name="foo">
+		<string value="foo"/>
+	</stanza>
+	<declare name="lightspeed">
+		<long value="299792458"/>
+	</declare>
+</includes>

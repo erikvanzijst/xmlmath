@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+	<testBoolean result="true">
+		<expression>
+			<and>
+				<equals>
+					<infinity/>
+					<toDouble>
+						<product>
+							<infinity/>
+							<infinity/>
+						</product>
+					</toDouble>
+				</equals>
+				<not>
+					<equals>
+						<infinity/>
+						<toDouble>
+							<product>
+								<infinity/>
+								<double value="-1.0"/>
+							</product>
+						</toDouble>
+					</equals>
+				</not>
+				<equals>
+					<infinity/>
+					<toDouble>
+						<abs>
+							<quotient>
+								<double value="-1"/>
+								<double value="0"/>
+							</quotient>
+						</abs>
+					</toDouble>
+				</equals>
+			</and>
+		</expression>
+	</testBoolean>
+</test>
+	

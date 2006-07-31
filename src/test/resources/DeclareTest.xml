@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+	<testBoolean result="true">
+		<expression>
+			<and>
+				<declare name="int">
+					<long value="3"/>
+				</declare>
+				<declare name="float">
+					<double value="3.0"/>
+				</declare>
+	
+				<not>
+					<equals>
+						<link name="int"/>
+						<link name="float"/>
+					</equals>
+				</not>
+				
+				<equals>
+					<linkLong name="int"/>
+					<linkNumber name="int"/>
+				</equals>
+				
+				<equals>
+					<linkLong name="int"/>
+					<toLong>
+						<linkNumber name="float"/>
+					</toLong>
+				</equals>
+			</and>
+		</expression>
+	</testBoolean>
+</test>

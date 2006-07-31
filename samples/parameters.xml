@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This example demonstrates the usage of input parameters. To run this example,
+pass two string parameters to the evaluator:
+
+  $ java -jar dist/xmlmath-1.1-SNAPSHOT.jar foo bar < samples/parameters.xml
+  parameter x: foo
+  parameter y: bar
+  $
+
+Omitting the parameters will cause warnings to be printed to stderr. Parameter
+"x" will use its default value:
+
+  $ java -jar dist/xmlmath-1.1-SNAPSHOT.jar < samples/parameters.xml
+  Warning: no value specified for input parameter "x".
+  Warning: no value specified for input parameter "y".
+  parameter x: default value
+  parameter y: null
+  $
+
+-->
+
+<expression xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlmath.org/1.0 http://xmlmath.org/1.0">
+	
+	<inputString name="x" description="Some input parameter" value="default value"/>
+	<inputString name="y"/>
+	<strcat>
+		<string value="parameter x: "/>
+		<linkString name="x"/>
+		<string value="&#xA;parameter y: "/>
+		<linkString name="y"/>
+	</strcat>
+</expression>

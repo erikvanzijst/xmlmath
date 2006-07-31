@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This example shows the usage of the for-loop. Notice the optional usage of the
+start/end/do tags.
+-->
+
+<expression xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlmath.org/1.0 http://xmlmath.org/1.0">
+	
+	<strcat>
+		<toString>
+			<for iterator="i">
+				<start>
+					<long value="0"/>
+				</start>
+				<end>
+					<long value="10"/>
+				</end>
+				<do>
+					<linkLong name="i"/>
+				</do>
+			</for>
+		</toString>
+		<string value="&#xA;"/>	<!-- newline -->
+		<toString>
+			<for iterator="i">
+				<long value="0"/>
+				<long value="10"/>
+				<linkLong name="i"/>
+			</for>
+		</toString>
+	</strcat>
+</expression>

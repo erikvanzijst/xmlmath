@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Factorial? Why another factorial? There's already <fact> for this.
+True, this merely serves to illustrate how complex operations can be built
+using the basics. Using <fact> would of course evaluate faster.
+
+To run this example, pass a positive long value to the evaluator:
+
+	$ java -jar dist/xmlmath-1.1-SNAPSHOT.jar 4 < samples/factorial.xml
+
+Remember: xmlmath uses 64-bit, signed integers, making 2^63 - 1 the biggest
+achievable number. This is not large enough to hold the result of factorials
+larger than 20!
+-->
+
+<expression xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlmath.org/1.0 http://xmlmath.org/1.0">
+	
+	<inputLong name="x"/>
+	<choose>
+		<if>
+			<lessThan>
+				<linkLong name="x"/>
+				<long value="0"/>
+			</lessThan>
+		</if>
+		<then>
+			<fail message="Cannot compute the factorial of a negative number."/>
+		</then>
+		<else>
+			<listProduct datatype="long">
+				<for iterator="i">
+					<long value="0"/>
+					<linkLong name="x"/>
+					<add datatype="long">
+						<linkLong name="i"/>
+						<long value="1"/>
+					</add>
+				</for>
+			</listProduct>
+		</else>
+	</choose>
+</expression>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<expression xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlmath.org/1.0 http://xmlmath.org/1.0">
+	
+	<inputDouble name="S0" value="9.03"/>
+	<inputDouble name="K" value="9"/>
+	<inputDouble name="r" value=".033939"/>
+	<inputDouble name="q" value=".03875969"/>
+	<inputDouble name="s" value=".222172"/>
+	<inputDouble name="T" value=".120547945"/>
+	
+	<include>samples/financial.xml</include>
+	<strcat>
+		<string value="Call-price: "/>
+		<toString>
+			<inline name="bsm_call"/>
+		</toString>
+		<string value="&#xA;Put-price: "/>
+		<toString>
+			<inline name="bsm_put"/>
+		</toString>
+	</strcat>
+</expression>

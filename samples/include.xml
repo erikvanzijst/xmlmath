@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This example shows how the constants.xml file is used in an expression. Given
+the approximate value of 40007km as the earth's circumference, it calculates
+how fast a ray of light can travel the earth's entire equator.
+-->
+
+<expression xmlns="http://xmlmath.org/1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlmath.org/1.0 http://xmlmath.org/1.0">
+	
+	<include>samples/constants.xml</include>
+	<strcat>
+		<string value="In a vacuum, it takes light "/>
+		<toString>
+			<quotient>
+				<double value="40007E3"/>
+				<linkLong name="lightspeed"/>
+			</quotient>
+		</toString>
+		<string value=" seconds to travel the diameter of the earth."/>
+	</strcat>
+</expression>
